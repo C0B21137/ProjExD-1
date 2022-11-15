@@ -4,23 +4,15 @@ import sys
 from random import randint
 import tkinter.messagebox as tkm
 
-<<<<<<< HEAD
-
-=======
 check_over = False
->>>>>>> upstream/main
 check_clear = False
 Ground = 360
 canJump = True
 vy = 0 # y方向の速度
 gr = 0.2 # 重力加速度
 
-<<<<<<< HEAD
 
 class Gameclear:
-=======
-class Gamefinish:
->>>>>>> upstream/main
     def __init__(self, title, wh, goimg):
         pg.display.set_caption(title)
         self.sfc = pg.display.set_mode(wh)
@@ -54,8 +46,6 @@ def game_clear():
     clock = pg.time.Clock()
     clock.tick(0.2)
 
-<<<<<<< HEAD
-=======
 def game_over():
     game = Gamefinish("Gameovar", (700, 400),"ex06/fig/game_over.png")
     game.blit()
@@ -63,7 +53,6 @@ def game_over():
     clock = pg.time.Clock()
     clock.tick(0.2)
 
->>>>>>> upstream/main
 
 def main():
     global gr, vy, canJump, Ground, check_clear
@@ -157,11 +146,7 @@ def main():
         
         pg.display.update()
         clock.tick(800)
-<<<<<<< HEAD
  
-=======
-
->>>>>>> upstream/main
         
 if __name__ == "__main__" :
     pg.init()
