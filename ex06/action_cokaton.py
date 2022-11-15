@@ -4,11 +4,13 @@ import sys
 from random import randint
 import tkinter.messagebox as tkm
 
+
 check_clear = False
 Ground = 360
 canJump = True
 vy = 0 # y方向の速度
 gr = 0.2 # 重力加速度
+
 
 class Gameclear:
     def __init__(self, title, wh, goimg):
@@ -29,11 +31,13 @@ def check_bound(obj_rct, scr_rct):
         yoko = -1
     return yoko
 
+
 def janp():
     global canJump, vy
     if canJump:
         canJump = False
         vy = -10 # 初速を与える
+
 
 def game_clear():
     game = Gameclear("Gameclear", (700, 400),"ex06/game_clear.png")
@@ -41,6 +45,7 @@ def game_clear():
     pg.display.update()
     clock = pg.time.Clock()
     clock.tick(0.2)
+
 
 def main():
     global gr, vy, canJump, Ground, check_clear
@@ -114,6 +119,7 @@ def main():
             return
         pg.display.update()
         clock.tick(800)
+ 
         
 if __name__ == "__main__" :
     pg.init()
