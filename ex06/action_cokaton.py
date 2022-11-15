@@ -4,15 +4,23 @@ import sys
 from random import randint
 import tkinter.messagebox as tkm
 
+<<<<<<< HEAD
 
+=======
+check_over = False
+>>>>>>> upstream/main
 check_clear = False
 Ground = 360
 canJump = True
 vy = 0 # y方向の速度
 gr = 0.2 # 重力加速度
 
+<<<<<<< HEAD
 
 class Gameclear:
+=======
+class Gamefinish:
+>>>>>>> upstream/main
     def __init__(self, title, wh, goimg):
         pg.display.set_caption(title)
         self.sfc = pg.display.set_mode(wh)
@@ -40,21 +48,35 @@ def janp():
 
 
 def game_clear():
-    game = Gameclear("Gameclear", (700, 400),"ex06/game_clear.png")
+    game = Gamefinish("Gameclear", (700, 400),"ex06/game_clear.png")
     game.blit()
     pg.display.update()
     clock = pg.time.Clock()
     clock.tick(0.2)
 
+<<<<<<< HEAD
+=======
+def game_over():
+    game = Gamefinish("Gameovar", (700, 400),"ex06/fig/game_over.png")
+    game.blit()
+    pg.display.update()
+    clock = pg.time.Clock()
+    clock.tick(0.2)
+
+>>>>>>> upstream/main
 
 def main():
     global gr, vy, canJump, Ground, check_clear
+    #(斎藤登担当)
+    time = int(pg.time.get_ticks() / 1000)
+    font = pg.font.SysFont("hg正楷書体pro", 30)
+    global gr, vy, canJump, Ground, check_clear, check_over
     pg.display.set_caption("アクションこうかとん")
     scrn_sfc = pg.display.set_mode((800, 480))
     scrn_rct = scrn_sfc.get_rect()
-    bg_sfc = pg.image.load("ex06/IMG_3412.PNG")
+    bg_sfc = pg.image.load("fig/back.png")
     bg_rct = bg_sfc.get_rect()
-    tori_sfc = pg.image.load("ex06/fig/6.png")
+    tori_sfc = pg.image.load("fig/2.png")
     tori_sfc = pg.transform.rotozoom(tori_sfc, 0, 2.0)
     tori_rct = tori_sfc.get_rect()
     tori_rct.left = 0
@@ -62,6 +84,8 @@ def main():
 
     clock = pg.time.Clock()
     while True:
+        time = int(pg.time.get_ticks() / 1000)
+        text = font.render("タイム:" +str(time), True, (0, 0, 0))
         scrn_sfc.blit(bg_sfc, bg_rct)
         #ゴールポールの描画
         pg.draw.rect(scrn_sfc,(255,255,255),(750,100,5,320))
@@ -70,6 +94,13 @@ def main():
         pg.draw.rect(scrn_sfc,(116,80,48),(200,370,150,50))
         pg.draw.rect(scrn_sfc,(116,80,48),(350,320,150,100))
         pg.draw.rect(scrn_sfc,(116,80,48),(500,270,150,150))
+        #スライムの描画(五月女担当)
+        sura_sfc = pg.image.load("fig/sura.png")
+        sura_sfc = pg.transform.rotozoom(sura_sfc, 0, 0.1)
+        sura_rct = sura_sfc.get_rect()
+        sura_rct.center = 690, 400
+        scrn_sfc.blit(sura_sfc, sura_rct)
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
@@ -117,14 +148,27 @@ def main():
         if tori_rct.right > 750 and tori_rct.bottom > 100:
             check_clear = True
             return
+
+        scrn_sfc.blit(text, (0, 0))
+        
+        if tori_rct.colliderect(sura_rct):#(五月女担当)
+            check_over = True
+            return
+        
         pg.display.update()
         clock.tick(800)
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> upstream/main
         
 if __name__ == "__main__" :
     pg.init()
     main()
     if check_clear:
         game_clear()
+    elif check_over:
+        game_over()
     pg.quit()
     sys.exit()
