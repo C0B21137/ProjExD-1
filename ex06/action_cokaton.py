@@ -4,6 +4,7 @@ import sys
 from random import randint
 import tkinter.messagebox as tkm
 
+
 check_over = False
 check_clear = False
 Ground = 360
@@ -27,7 +28,11 @@ class Gameclear:
 
 def check_bound(obj_rct, scr_rct):
     yoko = +1
-    if obj_rct.left < scr_rct.left or scr_rct.right < obj_rct.right or (200 < obj_rct.right and obj_rct.bottom > 370) or (350 < obj_rct.right and obj_rct.bottom > 320) or (500 < obj_rct.right and obj_rct.bottom > 270): 
+    if (obj_rct.left < scr_rct.left or
+       scr_rct.right < obj_rct.right or 
+       (200 < obj_rct.right and obj_rct.bottom > 370) or 
+       (350 < obj_rct.right and obj_rct.bottom > 320) or 
+       (500 < obj_rct.right and obj_rct.bottom > 270)): 
         yoko = -1
     return yoko
 
@@ -45,6 +50,7 @@ def game_clear():
     pg.display.update()
     clock = pg.time.Clock()
     clock.tick(0.2)
+
 
 def game_over():
     game = Gamefinish("Gameovar", (700, 400),"ex06/fig/game_over.png")
